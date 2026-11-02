@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPS Consulting Group | Your Business, Running Smarter</title>
+<style>
+  :root {
+    --burgundy: #7a0f2e;
+    --burgundy-deep: #4a0819;
+    --silver: #c9ccd1;
+    --gold: #d4a53a;
+    --cream: #faf6f0;
+    --ink: #2a1a1f;
+    --muted: #6b5a5f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: var(--cream); line-height: 1.6; }
+  a { color: var(--burgundy); }
+  section { padding: 72px 24px; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* Hero */
+  .hero {
+    background: radial-gradient(ellipse at center, #8a1435 0%, var(--burgundy) 45%, var(--burgundy-deep) 100%);
+    color: #fff; text-align: center; padding: 64px 24px 80px;
+  }
+  .logo { width: 100%; max-width: 480px; height: auto; margin: 0 auto 36px; display: block; }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 42px); line-height: 1.2; font-weight: 700; margin-bottom: 20px; }
+  .hero .subhead { font-size: 18px; max-width: 640px; margin: 0 auto 32px; opacity: 0.92; }
+  .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 16px 28px; border-radius: 6px; font-weight: 700;
+    text-decoration: none; font-size: 16px; transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-gold { background: var(--gold); color: var(--burgundy-deep); }
+  .btn-outline { border: 2px solid var(--gold); color: var(--gold); }
+  .email-line { margin-top: 22px; font-size: 14px; opacity: 0.85; }
+  .email-line a { color: var(--gold); }
+
+  /* Content sections */
+  h2 { font-size: 28px; color: var(--burgundy); margin-bottom: 18px; line-height: 1.25; }
+  h2::after { content: ""; display: block; width: 56px; height: 3px; background: var(--gold); margin-top: 12px; }
+  p { margin-bottom: 16px; font-size: 17px; }
+  .alt { background: #fff; }
+  .divider { border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+
+  /* Quiz */
+  .quiz { background: #fff; border: 1px solid #eadcd0; border-radius: 12px; padding: 32px; }
+  .progress { height: 6px; background: #eee; border-radius: 3px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); width: 0%; transition: width .3s; }
+  .quiz h3 { font-size: 22px; color: var(--burgundy); margin-bottom: 18px; }
+  .options { display: grid; gap: 12px; }
+  .option {
+    background: var(--cream); border: 2px solid #e3d3c6; border-radius: 8px;
+    padding: 16px 18px; font-size: 16px; cursor: pointer; text-align: left;
+    font-family: inherit; color: var(--ink);
+  }
+  .option:hover, .option.selected { border-color: var(--gold); background: #fdf6e6; }
+  .quiz-screen { display: none; }
+  .quiz-screen.active { display: block; }
+  .quiz-form label { display: block; font-weight: 700; margin: 14px 0 6px; font-size: 15px; }
+  .quiz-form input {
+    width: 100%; padding: 14px; border: 2px solid #e3d3c6; border-radius: 8px;
+    font-size: 16px; font-family: inherit;
+  }
+  .quiz-form input:focus { outline: none; border-color: var(--gold); }
+  .quiz-form .submit { margin-top: 22px; width: 100%; border: 0; cursor: pointer; background: var(--burgundy); color: #fff; font-size: 17px; }
+  .result-box { background: #fdf6e6; border-left: 4px solid var(--gold); padding: 18px; border-radius: 6px; margin-bottom: 18px; }
+  .back { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 14px; margin-top: 18px; font-family: inherit; }
+
+  /* Footer */
+  footer { background: var(--burgundy-deep); color: #e9dfe2; text-align: center; padding: 40px 24px; font-size: 14px; }
+  footer .tag { color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+  footer a { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <svg class="logo" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JPS Consulting Group, LLC. Your Business, Running Smarter.">
+      <defs>
+        <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f4f6f8"/>
+          <stop offset="50%" stop-color="#b9bec6"/>
+          <stop offset="100%" stop-color="#8e949c"/>
+        </linearGradient>
+        <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f6d77a"/>
+          <stop offset="100%" stop-color="#b8861f"/>
+        </linearGradient>
+      </defs>
+      <!-- Ring with gaps at top and bottom -->
+      <path d="M 300 20 A 130 130 0 0 0 170 150" fill="none" stroke="url(#silver)" stroke-width="12" stroke-linecap="butt"/>
+      <path d="M 300 20 A 130 130 0 0 1 430 150" fill="none" stroke="url(#silver)" stroke-width="12" stroke-linecap="butt"/>
+      <path d="M 170 150 A 130 130 0 0 0 300 280" fill="none" stroke="url(#silver)" stroke-width="12" stroke-linecap="butt"/>
+      <path d="M 430 150 A 130 130 0 0 1 300 280" fill="none" stroke="url(#silver)" stroke-width="12" stroke-linecap="butt"/>
+      <!-- JPS monogram -->
+      <text x="300" y="168" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="78" letter-spacing="-2">
+        <tspan fill="url(#silver)">JP</tspan><tspan fill="url(#gold)">S</tspan>
+      </text>
+      <!-- Wordmark -->
+      <text x="300" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="6" fill="url(#silver)">CONSULTING GROUP, LLC</text>
+      <rect x="40" y="342" width="520" height="2" fill="url(#gold)"/>
+      <text x="300" y="382" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="24" letter-spacing="3" fill="url(#gold)">YOUR BUSINESS, RUNNING SMARTER.</text>
+    </svg>
+
+    <h1>Contractors lose jobs to slow follow-up. Then they lose their evenings to paperwork.</h1>
+    <p class="subhead">I spent over 14 years as a contractor. Now I build the systems I wish I had back then, for you, so leads get answered fast, quotes get followed up, and paperwork stops eating your nights.</p>
+    <div class="btn-row">
+      <a class="btn btn-gold" href="#quiz">Take the 60-second time check</a>
+      <a class="btn btn-outline" href="https://calendar.app.google/bxahoTk4eZU6GCWNA">Book your free discovery call</a>
+    </div>
+    <p class="email-line">Prefer email? <a href="mailto:jpsconsultinggroupllc@gmail.com">jpsconsultinggroupllc@gmail.com</a></p>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <h2>The problem you already feel</h2>
+    <p>A homeowner needs work done. She calls three contractors. The first one to respond usually gets the conversation, and often the job. Speed is everything.</p>
+    <p>If her call comes in while you are on site, it waits. By the time you call back that night, she has booked someone else.</p>
+    <p>Then you get home to the second job. Working up quotes. Sending invoices. Sorting through paperwork. You did not start a trade to become a full-time administrator.</p>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- BUILD -->
+<section class="alt">
+  <div class="wrap">
+    <h2>I build it for you</h2>
+    <p>Most contractors do not need a new software suite.</p>
+    <p>I find the repeatable parts of your week that are slipping: lead follow-up, quote reminders, invoice nudges, job notes. Then I build the systems that handle them, and I set them up for you.</p>
+    <p>You keep doing the work you are good at. The system handles the chasing.</p>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PAPER AND PHONE -->
+<section>
+  <div class="wrap">
+    <h2>Paper and phone only? That is fine.</h2>
+    <p>No job software? No problem. If you have a computer, a smartphone, or a tablet, we can start right where you are.</p>
+    <p>We do not rip up how you already work. We build on it, and make it work better for you: faster responses, tighter follow-up, and more capacity to take care of clients, without adding hours to your day.</p>
+    <p>Same business you already run. More efficient, more responsive, and less paperwork waiting for you at night.</p>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- CREDIBILITY -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Why I believe this, because I live it</h2>
+    <p>In my contracting years, quotes, invoices, and sorting paperwork were the biggest drain on my time.</p>
+    <p>In my businesses today, I use these same systems for meeting prep, meeting notes, filing, invoices, and proposals. That alone saves me 7 to 10 hours a week in administrative work.</p>
+    <p>I'm not selling you a theory. I'm building you what I use.</p>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- 60-SECOND CHECK -->
+<section id="quiz">
+  <div class="wrap">
+    <h2>Start in 60 seconds</h2>
+    <p>A few taps, no typing until the end. I will tell you honestly where your time is going and whether I can help.</p>
+
+    <div class="quiz">
+      <div class="progress"><div class="progress-bar" id="bar"></div></div>
+
+      <!-- Q1 -->
+      <div class="quiz-screen active" data-step="0">
+        <h3>What kind of work do you do?</h3>
+        <div class="options" data-key="trade">
+          <button class="option" type="button">General contracting / remodeling</button>
+          <button class="option" type="button">Roofing / HVAC, plumbing, electrical</button>
+          <button class="option" type="button">Painting / drywall</button>
+          <button class="option" type="button">Concrete / masonry</button>
+          <button class="option" type="button">Another trade</button>
+          <button class="option" type="button">Another kind of small business</button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-screen" data-step="1">
+        <h3>Where do most of your leads come from?</h3>
+        <div class="options" data-key="lead_source">
+          <button class="option" type="button">Phone calls</button>
+          <button class="option" type="button">Referrals</button>
+          <button class="option" type="button">Website, Google</button>
+          <button class="option" type="button">Facebook, social media</button>
+          <button class="option" type="button">A mix</button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-screen" data-step="2">
+        <h3>A lead comes in while you are on a job. How fast do you usually respond?</h3>
+        <div class="options" data-key="response_speed">
+          <button class="option" type="button">Within 5 minutes</button>
+          <button class="option" type="button">Within the hour</button>
+          <button class="option" type="button">Same day</button>
+          <button class="option" type="button">Next day or later</button>
+          <button class="option" type="button">Honestly, it slips</button>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-screen" data-step="3">
+        <h3>What eats most of your evenings? Pick the biggest one.</h3>
+        <div class="options" data-key="evening_drain">
+          <button class="option" type="button">Working up quotes</button>
+          <button class="option" type="button">Chasing quotes I already sent</button>
+          <button class="option" type="button">Invoices and payments</button>
+          <button class="option" type="button">Sorting paperwork and filing</button>
+          <button class="option" type="button">Scheduling and job notes</button>
+          <button class="option" type="button">Returning calls and texts</button>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-screen" data-step="4">
+        <h3>How do you run the office now?</h3>
+        <div class="options" data-key="office_setup">
+          <button class="option" type="button">Paper and phone</button>
+          <button class="option" type="button">Spreadsheets and email</button>
+          <button class="option" type="button">Software I like</button>
+          <button class="option" type="button">Software I pay for and barely use</button>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-screen" data-step="5">
+        <h3>What do you have to work with?</h3>
+        <div class="options" data-key="equipment">
+          <button class="option" type="button">A computer</button>
+          <button class="option" type="button">A tablet</button>
+          <button class="option" type="button">A smartphone</button>
+          <button class="option" type="button">All of them</button>
+        </div>
+      </div>
+
+      <!-- CONTACT + FORMSPREE -->
+      <div class="quiz-screen" data-step="6">
+        <form id="time-check-form" class="quiz-form">
+          <input type="hidden" name="trade" id="fs-trade" />
+          <input type="hidden" name="lead_source" id="fs-lead-source" />
+          <input type="hidden" name="response_speed" id="fs-response-speed" />
+          <input type="hidden" name="evening_drain" id="fs-evening-drain" />
+          <input type="hidden" name="office_setup" id="fs-office-setup" />
+          <input type="hidden" name="equipment" id="fs-equipment" />
+          <input type="hidden" name="result_type" id="fs-result-type" />
+
+          <label for="first_name">First name</label>
+          <input type="text" id="first_name" name="first_name" data-fs-field required />
+          <span data-fs-error="first_name"></span>
+
+          <label for="business_name">Business name</label>
+          <input type="text" id="business_name" name="business_name" data-fs-field />
+          <span data-fs-error="business_name"></span>
+
+          <label for="email">Best email</label>
+          <input type="email" id="email" name="email" data-fs-field required />
+          <span data-fs-error="email"></span>
+
+          <label for="mobile">Best mobile (optional, for your result by text)</label>
+          <input type="tel" id="mobile" name="mobile" data-fs-field />
+          <span data-fs-error="mobile"></span>
+
+          <button type="submit" class="btn btn-gold submit" data-fs-submit-btn>See my result</button>
+        </form>
+
+        <div data-fs-success>
+          <div class="result-box"><p id="result-text" style="margin:0"></p></div>
+          <p>I will review this myself and reply with an honest read on whether I can help. Want to talk sooner? <a href="https://calendar.app.google/bxahoTk4eZU6GCWNA">Book your free discovery call.</a></p>
+        </div>
+        <div data-fs-error style="color:var(--burgundy);margin-top:12px;">Something went wrong. Email jpsconsultinggroupllc@gmail.com directly.</div>
+      </div>
+
+      <button class="back" type="button" id="back">← Back</button>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- CLOSING -->
+<section class="alt">
+  <div class="wrap" style="text-align:center;">
+    <p style="font-size:14px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;">What the free discovery call looks like</p>
+    <p>Thirty minutes, free. You tell me the biggest task eating your office time. I tell you honestly whether I can help, what I would build, and what it would cost. If it is not a fit, you leave with a clearer picture anyway. No pressure, no software pitch.</p>
+    <p>Run a different kind of small business with clients coming in? The same follow-up problem applies. Start with the 60-second check.</p>
+    <h2 style="margin-top:36px;">Your evenings are worth more than your paperwork.</h2>
+    <div class="btn-row" style="margin-top:8px;">
+      <a class="btn btn-gold" href="https://calendar.app.google/bxahoTk4eZU6GCWNA">Book your free discovery call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="tag">Your Business, Running Smarter.</div>
+  <div>JPS Consulting Group | <a href="mailto:jpsconsultinggroupllc@gmail.com">jpsconsultinggroupllc@gmail.com</a></div>
+</footer>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script>
+  // Quiz navigation and answer capture
+  const screens = document.querySelectorAll('.quiz-screen');
+  const bar = document.getElementById('bar');
+  const back = document.getElementById('back');
+  const answers = {};
+  let step = 0;
+
+  function show(i) {
+    screens.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    bar.style.width = ((i) / (screens.length - 1)) * 100 + '%';
+    back.style.visibility = i === 0 ? 'hidden' : 'visible';
+  }
+
+  document.querySelectorAll('.options').forEach(group => {
+    const key = group.dataset.key;
+    group.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        answers[key] = btn.textContent.trim();
+        setTimeout(() => { step++; show(step); }, 180);
+      });
+    });
+  });
+
+  back.addEventListener('click', () => { if (step > 0) { step--; show(step); } });
+
+  // Result logic based on Q3 (speed) and Q4 (evenings)
+  function buildResult() {
+    const slow = answers.response_speed === 'Next day or later' || answers.response_speed === 'Honestly, it slips';
+    const evenings = answers.evening_drain || 'your admin work';
+    if (slow) {
+      return { type: 'speed', text: 'Your biggest leak is speed. The first system I would build you is lead response.' };
+    }
+    if (answers.office_setup === 'Paper and phone') {
+      return { type: 'paper', text: 'Your leads are covered. Your evenings are not. Good news: paper and phone is a clean place to start. Nothing to undo. The first system I would look at is ' + evenings.toLowerCase() + '.' };
+    }
+    return { type: 'evenings', text: 'Your leads are covered. Your evenings are not. The first system I would look at is ' + evenings.toLowerCase() + '.' };
+  }
+
+  // Fill hidden fields and result text before Formspree submits
+  const form = document.getElementById('time-check-form');
+  form.addEventListener('submit', () => {
+    const r = buildResult();
+    document.getElementById('result-text').textContent = r.text;
+    document.getElementById('fs-trade').value = answers.trade || '';
+    document.getElementById('fs-lead-source').value = answers.lead_source || '';
+    document.getElementById('fs-response-speed').value = answers.response_speed || '';
+    document.getElementById('fs-evening-drain').value = answers.evening_drain || '';
+    document.getElementById('fs-office-setup').value = answers.office_setup || '';
+    document.getElementById('fs-equipment').value = answers.equipment || '';
+    document.getElementById('fs-result-type').value = r.type;
+  });
+
+  // Formspree AJAX binding
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#time-check-form', formId: 'mbggprpa' });
+</script>
+</body>
+</html>
